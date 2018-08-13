@@ -73,7 +73,7 @@ except Exception as ex:
 
 
 # Gun Type selection
-gun = globals()[str((sys.argv[2])] #!!!
+gun = globals()[str((sys.argv)[2])] #!!!
 
 
 # Camera Selection
