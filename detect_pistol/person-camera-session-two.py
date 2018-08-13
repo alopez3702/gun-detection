@@ -107,7 +107,7 @@ os.chdir("/tensorflow/models/research/object_detection/") #!!!
 
 # Needed if you want to make bounded boxes around person for object detection
 from utils import label_map_util
-from utils import visualization_utils as vis_util
+#from utils import visualization_utils as vis_util
 
 ##################### Model Preparation ###############################
 
