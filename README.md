@@ -1,4 +1,5 @@
-# pistol-detection
+# Gun Detection Using Tensorflow
+Utilizing Tensorflow and multiple trained models, these Python-based scripts can access a video feed and detect either pistols (handguns, pistols, etc.) or "long guns" (rifles, etc.). To acheive this, two Tensorflow sessions are ran seperately. The first session detects people and the second session detects guns within the images of detected persons. This method reduces the number of false positives while also maintainig optimal performance times that allow the sessions to be ran with any real-time video feed. The two sessions are diesgined to be ran concurrently with each other.
 
 ```
 git clone https://github.com/sofwerx/assault-rifle-detection.git $HOME/Documents/pistol-detection
