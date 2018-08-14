@@ -49,6 +49,9 @@ tar -xvf faster_rcnn_resnet101_coco_2017_11_08.tar.gz
 
 
 The following commands will require one to select which camera (video feed) will be used and which gun type will be detected. The current options are as follows: 
+
+----------------------------------------------------------------------------------------------------------------------------------------
+
 Select Camera
 
 RECEPTION_EAST
@@ -73,9 +76,7 @@ OUTSIDE_NORTH_EAST
 
 DIRTYWERX_RAMP
 
-
-
-
+----------------------------------------------------------------------------------------------------------------------------------------
 
 Select Gun Type
 
@@ -83,19 +84,17 @@ PISTOL
 
 LONGGUN
 
-
-
-
+----------------------------------------------------------------------------------------------------------------------------------------
 
 Run session one in its own instance, selecting which camera to use
+
 ```
 python person-camera-session-one.py RECEPTION_EAST
 ```
 
-
-
 Session two can be ran simultaneously with session one in a seperate instance.
 Choose which camera is being used and what gun type is being detected.
+
 ```
 python person-camera-session-two.py RECEPTION_EAST PISTOL
 ```
