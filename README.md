@@ -3,7 +3,7 @@ Utilizing Tensorflow and multiple trained models, these Python-based scripts can
 
 A Minio account is required to communicate the appropriate data about detected persons from one session to the other.
 
-##Installation
+## Installation
 It is recommened that these scripts are ran within a docker container. The following commands should be ran to set up the container:
 
 ```
@@ -38,7 +38,7 @@ OR
 ```
 cp /detect_pistol/person-camera-session-two.py .
 ```
-then, after either:
+then, after either command:
 ```
 wget http://download.tensorflow.org/models/object_detection/faster_rcnn_resnet101_coco_2017_11_08.tar.gz
 ```
@@ -47,6 +47,8 @@ wget http://download.tensorflow.org/models/object_detection/faster_rcnn_resnet10
 tar -xvf faster_rcnn_resnet101_coco_2017_11_08.tar.gz
 ```
 
+
+The following commands will require one to select which camera (video feed) will be used and which gun type will be detected. The current options are as follows: 
 Select Camera
 
 RECEPTION_EAST
@@ -73,6 +75,8 @@ DIRTYWERX_RAMP
 
 
 
+
+
 Select Gun Type
 
 PISTOL
@@ -81,10 +85,14 @@ LONGGUN
 
 
 
+
+
 Run session one in its own instance, selecting which camera to use
 ```
 python person-camera-session-one.py RECEPTION_EAST
 ```
+
+
 
 Session two can be ran simultaneously with session one in a seperate instance.
 Choose which camera is being used and what gun type is being detected.
