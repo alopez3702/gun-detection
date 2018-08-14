@@ -52,7 +52,7 @@ The following commands will require one to select which camera (video feed) will
 
 ----------------------------------------------------------------------------------------------------------------------------------------
 
-Select Camera
+Select Camera:
 
 RECEPTION_EAST
 
@@ -78,7 +78,7 @@ DIRTYWERX_RAMP
 
 ----------------------------------------------------------------------------------------------------------------------------------------
 
-Select Gun Type
+Select Gun Type:
 
 PISTOL
 
