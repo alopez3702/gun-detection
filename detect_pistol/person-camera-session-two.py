@@ -250,57 +250,7 @@ with tf.Session() as sess2:
                         # print
                 font = cv2.FONT_HERSHEY_SIMPLEX
                 cv2.putText(image_np, gunScore, (int(px[person]), labelBuffer), font, 0.8, (0, 255, 0), 2)
-                        
-                         # Package bounding box info for ES
-                xmin = px[person] 
-                xmax = (px[person] + wid[person])
-                ymin = py[person] 
-                ymax = (py[person] + hei[person])
-                        
-                '''
-                        # Send results to ES
-                        for x in range(5):
-                            tdoc = {
-                                'timestamp': datetime.now(),
-                                'content': 'Test Message',
-                                'text': 'Can you hear me now?',
-                                'number': x,
-                            }
-                            es_post = es.index(index="test", doc_type="_doc", body=tdoc)
-                            print('ES document sent.')
-                            print(tdoc)
-                        '''                    
-                tdoc = {
-                    'timestamp': datetime.now(),
-                    'content': 'Video information',
-                    'text': 'Object detected.',
-                    'xmin': xmin,
-                    'xmax': xmax,
-                    'ymin': ymin,
-                    'ymax': ymax,
-                }
-                    
-                        # Send results to ES
-                res = es.index(index=[ k for k,v in locals().items() if v is url][0].replace("_","-").lower(), doc_type="_doc",body=tdoc)
-                print("ES document sent")
-                #print(tdoc)
-                        
-                if url == RECEPTION_EAST:
-                    res = es.index(index="reception-east", doc_type="_doc", body=tdoc)
-                    print('ES document sent.')
-                #    print(tdoc)
-                elif url == RECEPTION_WEST:
-                    res = es.index(index="reception-west", doc_type="_doc", body=tdoc)
-                    print('ES document sent.')
-                #    print(tdoc)
-                elif url == OUTSIDE_WEST:
-                    res = es.index(index="outside-west", doc_type="_doc", body=tdoc)
-                    print('ES document sent.')
-                #    print(tdoc)
-                elif url == TEST:
-                    es_post = es.index(index="test", doc_type="_doc", body=tdoc)
-                    print('ES document sent.')
-                #    print(tdoc)
+
         print('Took {} seconds to perform image recognition on people found'.format(timeit.default_timer()))
         cv2.imshow('frame', image_np)
         if cv2.waitKey(1000) & 0xFF == ord('q'):
