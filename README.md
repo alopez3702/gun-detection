@@ -51,33 +51,7 @@ tar -xvf faster_rcnn_resnet101_coco_2017_11_08.tar.gz
 ```
 
 
-The following commands will require one to select which camera (video feed) will be used and which gun type will be detected. The current options are as follows: 
-
-----------------------------------------------------------------------------------------------------------------------------------------
-
-Select Camera:
-
-RECEPTION_EAST
-
-RECEPTION_WEST
-
-DIRTYWERX_NORTH
-
-DIRTYWERX_SOUTH
-
-THUNDERDRONE_INDOOR_EAST
-
-THUNDERDRONE_INDOOR_WEST
-
-OUTSIDE_WEST
-
-OUTSIDE_NORTH_WEST
-
-OUTSIDE_NORTH
-
-OUTSIDE_NORTH_EAST
-
-DIRTYWERX_RAMP
+The following commands will require one to select which gun type will be detected. The current options are as follows: 
 
 ----------------------------------------------------------------------------------------------------------------------------------------
 
@@ -89,17 +63,17 @@ LONGGUN
 
 ----------------------------------------------------------------------------------------------------------------------------------------
 
-Run session one in its own instance, selecting which camera to use
+Run session one in its own instance.
 
 ```
-python person-camera-session-one.py RECEPTION_EAST
+python person-camera-session-one.py <absolute path to video feed or rtsp link here>
 ```
 
 Session two can be ran simultaneously with session one in a seperate instance.
-Choose which camera is being used and what gun type is being detected.
+Choose what gun type is being detected.
 
 ```
-python person-camera-session-two.py RECEPTION_EAST PISTOL
+python person-camera-session-two.py PISTOL
 ```
 
 ## Changes
@@ -108,6 +82,4 @@ This project was developed by SOFWERX, and it utilizes cameras, servers, etc. ow
 Changes primarily need to be made to person-camera-session-one.py and person-camera-session-two.py under the detect_pistol directory.
 
 ### Changes to both session scripts
--Under the comment #Camera, there is a list of variables all containing string values. These variables are used to access certain camera feeds. Which ever camera feed one wishes to use is selected when running the script (detailed under the "Installation" header. One can replace these values with the absolute path or rtsp link to whichever video feed one wishes to use.
-
 -On line 177 in person-camera-session-one.py and line 175 in person-camera-session-two.py allow the scripts to access the Minio client. The name of the server, the access_key, and the server_key need to be changed to the specifc values one will be using for their own Minio client. Documentation for the Minio Python Client SDK can be found here: https://docs.minio.io/docs/python-client-quickstart-guide.
