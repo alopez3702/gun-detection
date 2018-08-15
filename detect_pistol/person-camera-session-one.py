@@ -56,23 +56,6 @@ DIRTYWERX_RAMP="rtsp://admin:1qazxsw2!QAZXSW@@datascience.opswerx.org:20053"
 TEST="rtsp://admin:1qazxsw2!QAZXSW@@datascience.opswerx.org:20043" #!!!
 
 
-# Setup ES 
-try:
-    es = Elasticsearch(
-        [
-            'https://elastic:diatonouscoggedkittlepins@elasticsearch.orange.opswerx.org:443'
-        ],
-        verify_certs=True
-    )
-    print("ES - Connected.")
-except Exception as ex:
-    print("Error: ", ex)
-
-
-# GPU Percentage
-#gpuAmount = int((sys.argv)[2]) * 0.1 #!!!
-
-
 # Camera Selection
 url = globals()[str((sys.argv)[1])] #!!!
 #url=TEST
