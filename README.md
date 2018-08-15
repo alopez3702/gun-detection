@@ -2,7 +2,7 @@
 Utilizing Tensorflow and multiple trained models, these Python-based scripts can access a video feed and detect either pistols (handguns, pistols, etc.) or "long guns" (rifles, etc.). To acheive this, two Tensorflow sessions are ran seperately. The first session detects people and the second session detects guns within the images of detected persons. This method reduces the number of false positives while also maintainig optimal performance times that allow the sessions to be ran with any real-time video feed. The two sessions are diesgined to be ran concurrently with each other.
 
 ## Prerequisites
-Certain changes to person-camera-session-one.py and person-camera-session-two.py may need to be made BEFORE setting up a docker container. A list of possible needed changes can be found under the "Changes" header.
+Certain changes to person-camera-session-one.py and person-camera-session-two.py may need to be made BEFORE setting up a docker container. Fork this repo and make the appropriate changes. A list of possible needed changes can be found under the "Changes" header.
 
 A Minio server and bucket is required to store certain data. The public Minio server 'play.minio.io:9000' can be used with the access_key 'Q3AM3UQ867SPQQA43P2F' and secret_key 'zuf+tfteSlswRu7BJ86wekitnifILbZam1KYY3TG'. More information about Minio Client can be found here: https://docs.minio.io/docs/minio-client-complete-guide. 
 
