@@ -179,6 +179,15 @@ minioClient = Minio('minio.supermicro3.opswerx.org',
                   secret_key='Doolittle123',
                   secure=True)
 
+try: 
+    minioClient.make_bucket("person-camera", location="us-east-1")
+except BucketAlreadyOwnedByYou as err:
+    pass
+except BucketAlreadyExists as err:
+    pass
+except ResponseError as err:
+    raise
+
 #######################################################################
 ############# Perform object Detection and Recognition ################
 #######################################################################
