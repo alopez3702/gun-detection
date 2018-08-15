@@ -59,19 +59,6 @@ TEST="rtsp://admin:1qazxsw2!QAZXSW@@datascience.opswerx.org:20043" #!!!
 PISTOL = False
 LONGGUN = True
 
-# Setup ES 
-try:
-    es = Elasticsearch(
-        [
-            'https://elastic:diatonouscoggedkittlepins@elasticsearch.orange.opswerx.org:443'
-        ],
-        verify_certs=True
-    )
-    print("ES - Connected.")
-except Exception as ex:
-    print("Error: ", ex)
-
-
 # Gun Type selection
 gun = globals()[str((sys.argv)[2])] #!!!
 
