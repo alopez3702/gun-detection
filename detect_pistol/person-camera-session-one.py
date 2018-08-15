@@ -140,9 +140,9 @@ def load_image_into_numpy_array(image):
     return np.array(image.getdata()).reshape(
         (im_height, im_width, 3)).astype(np.uint8)
 
-minioClient = Minio('minio.supermicro3.opswerx.org',
-                  access_key='admin',
-                  secret_key='Doolittle123',
+minioClient = Minio('<enter client name here>',
+                  access_key='<enter access key here>',
+                  secret_key='<enter secret key here>',
                   secure=True)
 
 try: 
