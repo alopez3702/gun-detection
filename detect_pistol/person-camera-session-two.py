@@ -47,6 +47,10 @@ LONGGUN = True
 # Gun Type selection
 gun = globals()[str((sys.argv)[1])] #!!!
 
+client = sys.argv[2]
+access = sys.argv[3]
+secret = sys.argv[4]
+
 # Science Thresholds
 person_threshold = 0.50
 person_gun_threshold = 0.60
@@ -140,9 +144,9 @@ def load_image_into_numpy_array(image):
     return np.array(image.getdata()).reshape(
         (im_height, im_width, 3)).astype(np.uint8)
 
-minioClient = Minio('<enter client name here>',
-                  access_key='<enter access key here>',
-                  secret_key='<enter secret key here>',
+minioClient = Minio(client,
+                  access_key=access,
+                  secret_key=secret,
                   secure=True)
 
 try: 
@@ -229,4 +233,4 @@ with tf.Session() as sess2:
         os.remove(image)
         os.remove(csv)
 sess2.close()
-cv2.destroyAllWindows()
+cv2.destroyWindow('frame')
