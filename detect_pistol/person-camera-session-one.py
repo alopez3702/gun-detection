@@ -44,6 +44,9 @@ warnings.filterwarnings('ignore')
 url = sys.argv[1] #!!!
 print(url)
 
+client = sys.argv[2]
+access = sys.argv[3]
+secret = sys.argv[4]
 
 # Science Thresholds
 person_threshold = 0.50
@@ -140,9 +143,9 @@ def load_image_into_numpy_array(image):
     return np.array(image.getdata()).reshape(
         (im_height, im_width, 3)).astype(np.uint8)
 
-minioClient = Minio('<enter client name here>',
-                  access_key='<enter access key here>',
-                  secret_key='<enter secret key here>',
+minioClient = Minio(client,
+                  access_key=access,
+                  secret_key=secret,
                   secure=True)
 
 try: 
