@@ -45,7 +45,7 @@ PISTOL = False
 LONGGUN = True
 
 # Gun Type selection
-gun = globals()[str((sys.argv)[1])] #!!!
+gun = globals()[str((sys.argv)[1])]
 
 client = sys.argv[2]
 access = sys.argv[3]
@@ -57,16 +57,16 @@ person_gun_threshold = 0.60
 
 # paths to model and labels
 if(gun):
-    model = '/tf_files/retrained_graph_long_gun.pb'
-    labels = "/tf_files/retrained_labels_long_gun.txt"
+    model = '/tf_files/retrained_graph_long_gun.pb' #!!!
+    labels = "/tf_files/retrained_labels_long_gun.txt" #!!!
 else:
-    model = '/tf_files/retrained_graph.pb'
-    labels = "/tf_files/retrained_labels.txt"
+    model = '/tf_files/retrained_graph.pb' #!!!
+    labels = "/tf_files/retrained_labels.txt" #!!!
 
 # Intialize Tensorflow session and gpu memory management
 config = tf.ConfigProto()
 config.gpu_options.allow_growth = True
-#config.gpu_options.per_process_gpu_memory_fraction = gpuAmount #!!!
+#config.gpu_options.per_process_gpu_memory_fraction = gpuAmount
 session = tf.Session(config=config)
 
 # This is needed since the notebook is stored in the object_detection folder.
