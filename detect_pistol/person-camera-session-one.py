@@ -43,7 +43,10 @@ warnings.filterwarnings('ignore')
 # Camera Selection
 url = sys.argv[1]
 print(url)
+urlname = url[-5:]
+print(urlname)
 
+#Takes bash input for Minio Client credentials
 client = sys.argv[2]
 access = sys.argv[3]
 secret = sys.argv[4]
@@ -143,13 +146,15 @@ def load_image_into_numpy_array(image):
     return np.array(image.getdata()).reshape(
         (im_height, im_width, 3)).astype(np.uint8)
 
+#connects to the Minio Client
 minioClient = Minio(client,
                   access_key=access,
                   secret_key=secret,
                   secure=True)
 
+#makes Minio bucket or checks if bucket exists
 try: 
-    minioClient.make_bucket("person-camera", location="us-east-1")
+    minioClient.make_bucket("person-camera-session", location="us-east-1")
 except BucketAlreadyOwnedByYou as err:
     pass
 except BucketAlreadyExists as err:
@@ -296,7 +301,7 @@ with tf.Session(graph=detection_graph) as sess:
         df7.columns = ['wid', 'hei', 'px', 'py']
         
         #store current frame and data about frame in a directory (directory location determined by line 212)
-        name = "rec_frame"+str(nameCount)+".jpg"
+        name = "rec_frame"+urlname+"_"+str(nameCount)+".jpg"
         
         cv2.imwrite(os.path.join(path,name), image_np, [int(cv2.IMWRITE_JPEG_QUALITY), 10]) #lowers image resolution and saves image
         nameCount+=1
@@ -307,6 +312,7 @@ with tf.Session(graph=detection_graph) as sess:
         try:
             minioClient.fput_object('person-camera', name, name)
             minioClient.fput_object('person-camera', csvfile, csvfile)
+            print("Sent to Minio server")
         except ResponseError as err:
             print(err)
         
@@ -316,5 +322,3 @@ with tf.Session(graph=detection_graph) as sess:
         
         print('Took {} seconds to reach end of session'.format(timeit.default_timer() - start_time))
 sess.close()
-print('Took {} seconds to find people in image'.format(timeit.default_timer() - start_time))
-
