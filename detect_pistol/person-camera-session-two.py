@@ -47,9 +47,13 @@ LONGGUN = True
 # Gun Type selection
 gun = globals()[str((sys.argv)[1])]
 
-client = sys.argv[2]
-access = sys.argv[3]
-secret = sys.argv[4]
+#camera selection
+url = sys.argv[2]
+urlname = camera[-5:]
+
+client = sys.argv[3]
+access = sys.argv[4]
+secret = sys.argv[5]
 
 # Science Thresholds
 person_threshold = 0.50
@@ -150,7 +154,7 @@ minioClient = Minio(client,
                   secure=True)
 
 try: 
-    minioClient.make_bucket("person-camera", location="us-east-1")
+    minioClient.make_bucket("test", location="us-east-1")
 except BucketAlreadyOwnedByYou as err:
     pass
 except BucketAlreadyExists as err:
@@ -164,19 +168,34 @@ location = '/pistol-detection/detect_pistol/Data' #!!!
 os.chdir(location)
 with tf.Session() as sess2:
     while(True):
-        image = 'rec_frame'+str(count)+'.jpg'
-        csv = 'rec_frame'+str(count)+'.csv'
+        image = 'rec_frame'+urlname+'_'+str(count)+'.jpg'
+        csv = 'rec_frame'+urlname+'_'+str(count)+'.csv'
         try:
-            minioClient.fget_object('person-camera', image, image)
-            minioClient.fget_object('person-camera', csv, csv)
+            minioClient.fget_object('test', image, image)
+            minioClient.fget_object('test', csv, csv)
         except NoSuchKey as err:
+            #Note: Session 2 may go through files on the Minio server faster than Session 1 can produce files
+            #This error may appear frequently if Session 2 can't find a file Session 1 hadn't produced yet
+            #Session 2 will wait for Session 1 to make the next file.
             print(err) #comment this out if you don't want constant error messages
+            print("NoSuchKey error. Tried to find a non-existent file") #Comment this one out too
             continue
         except ResponseError as err:
             print(err)
             continue
         image_np = cv2.imread(image)
         df8 = pd.read_csv(csv)
+        
+        #If the Minio Client bucket gets too full of images, use the following code to delete files.
+        #We choose to not delete files because if files are deleted and Session 2 is restarted but Session 1 is not,
+        #Session 2 will be stuck in an infinite loop trying to find files that it already deleted.
+        #But for live-footage, Session 1 and Session 2 should be restarted together if they need to be.
+        #This code can also be used for "garbage collection".
+        #try:
+        #    minioClient.remove_object('test', image)
+        #    minioClient.remove_object('test', csv)
+        #except ResponseError as err:
+        #    print(err)
         
         count+=1
         
