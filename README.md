@@ -85,3 +85,6 @@ python person-camera-session-one.py rtsp://184.72.239.149/vod/mp4:BigBuckBunny_1
 ```
 python person-camera-session-two.py PISTOL play.minio.io:9000 Q3AM3UQ867SPQQA43P2F zuf+tfteSlswRu7BJ86wekitnifILbZam1KYY3TG
 ```
+
+## Known Issues
+There may be a few issues with this project. Detailed descriptions of known issues can be found in the "Issues" tab on this Github repo
