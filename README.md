@@ -62,7 +62,7 @@ LONGGUN
 
 ----------------------------------------------------------------------------------------------------------------------------------------
 
-The following commands also require one to input the name of their Minio Client, Minio access key, and Minio secret key.
+The following commands also require one to input the absolute path or rtsp link of the camera they'd wish to use, the name of their Minio Client, Minio access key, and Minio secret key.
 
 Run session one in its own instance (before session two). (It's not entirely neccesary to run session one before session two on subsequent runs, but it should be done if one wants to use a live video feed and track objects in real time.)
 
@@ -74,7 +74,7 @@ Session two can be ran simultaneously with session one in a seperate instance.
 Choose what gun type is being detected.
 
 ```
-python person-camera-session-two.py <Gun type> <Minio Client> <Minio access key> <Minio secret key>
+python person-camera-session-two.py <Gun type> <absolute path to video feed or rtsp link here> <Minio Client> <Minio access key> <Minio secret key>
 ```
 Here's an example of running the scripts:
 
@@ -83,7 +83,7 @@ python person-camera-session-one.py rtsp://184.72.239.149/vod/mp4:BigBuckBunny_1
 ```
 
 ```
-python person-camera-session-two.py PISTOL play.minio.io:9000 Q3AM3UQ867SPQQA43P2F zuf+tfteSlswRu7BJ86wekitnifILbZam1KYY3TG
+python person-camera-session-two.py PISTOL rtsp://184.72.239.149/vod/mp4:BigBuckBunny_175k.mov play.minio.io:9000 Q3AM3UQ867SPQQA43P2F zuf+tfteSlswRu7BJ86wekitnifILbZam1KYY3TG
 ```
 
 ## Known Issues
