@@ -41,8 +41,9 @@ warnings.filterwarnings('ignore')
 #######################################################################
 
 #Gun type to detect
-PISTOL = False
-LONGGUN = True
+PISTOL = "pistol"
+LONGGUN = "longgun"
+BOTH = "both"
 
 # Gun Type selection
 gun = globals()[str((sys.argv)[1])]
@@ -60,9 +61,12 @@ person_threshold = 0.50
 person_gun_threshold = 0.60
 
 # paths to model and labels
-if(gun):
+if(gun=="longgun"):
     model = '/tf_files/retrained_graph_long_gun.pb' #!!!
     labels = "/tf_files/retrained_labels_long_gun.txt" #!!!
+elif(gun=="both"):
+    model = '/tf_files/frozen_inference_graph.pb'
+    labels = "/tf_files/frozen_inference_graph.txt"
 else:
     model = '/tf_files/retrained_graph.pb' #!!!
     labels = "/tf_files/retrained_labels.txt" #!!!
