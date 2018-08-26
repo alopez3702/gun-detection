@@ -60,6 +60,8 @@ PISTOL
 
 LONGGUN
 
+BOTH
+
 ----------------------------------------------------------------------------------------------------------------------------------------
 
 The following commands also require one to input the absolute path or rtsp link of the camera they'd wish to use, the name of their Minio Client, Minio access key, and Minio secret key.
