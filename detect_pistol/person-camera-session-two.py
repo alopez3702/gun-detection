@@ -182,7 +182,7 @@ with tf.Session() as sess2:
             #This error may appear frequently if Session 2 can't find a file Session 1 hadn't produced yet
             #Session 2 will wait for Session 1 to make the next file.
             print(err) #comment this out if you don't want constant error messages
-            print("NoSuchKey error. Tried to find a non-existent file") #Comment this one out too
+            print("NoSuchKey error. Tried to find a non-existent file in the Minio Client") #Comment this one out too
             continue
         except ResponseError as err:
             print(err)
