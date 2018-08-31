@@ -303,7 +303,7 @@ with tf.Session(graph=detection_graph) as sess:
         #store current frame and data about frame in a directory (directory location determined by line 212)
         name = "rec_frame"+urlname+"_"+str(nameCount)+".jpg"
         
-        cv2.imwrite(os.path.join(path,name), image_np, [int(cv2.IMWRITE_JPEG_QUALITY), 10]) #lowers image resolution and saves image
+        cv2.imwrite(os.path.join(path,name), image_np) #lowers image resolution and saves image
         nameCount+=1
         csvfile = name.replace(".jpg", ".csv")
         df7.to_csv(csvfile)
